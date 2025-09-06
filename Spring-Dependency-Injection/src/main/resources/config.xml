@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="stud1" class="com.subham.primitive.Student">
+        <property name="id" value="101" > </property>
+        <property name="name" value="subham" > </property>
+        <property name="address" value="Odisha" > </property>
+    </bean>
+    <bean id="stud2" class="com.subham.primitive.Student">
+        <property name="id" value="102"> </property>
+        <property name="name" value="dash"> </property>
+        <property name="address" value="Jharkhand"> </property>
+    </bean>
+</beans>
