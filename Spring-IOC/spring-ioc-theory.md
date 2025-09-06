@@ -1,6 +1,5 @@
 ![Alt text](images/img.png)
 ****
-
 ### What is Spring Framework?
 
 **Spring is a dependency injection framework is to make loosely coupled application.<br>
