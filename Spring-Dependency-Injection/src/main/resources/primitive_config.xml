@@ -5,6 +5,7 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
     <!--using namespace-->
     <bean id="stud1" class="com.subham.primitive.Student" p:id="101" p:name="subham" p:address="Odisha"> </bean>
     <!--using self closing tag-->
@@ -13,4 +14,5 @@
         <property name="name" value="dash"/>
         <property name="address" value="Jharkhand"/>
     </bean>
+
 </beans>
