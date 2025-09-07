@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean id="tech1" class="com.subham.collection.Teacher">
+        <property name="name" value="subham"/>
+        <property name="address">
+            <list>
+                <value>odisha</value>
+                <value>bihar</value>
+            </list>
+        </property>
+        <property name="phone">
+           <set>
+               <value>7896458596</value>
+               <value>8574958648</value>
+           </set>
+        </property>
+        <property name="classes">
+           <map>
+              <entry key="10th" value="room 6"/>
+              <entry key="12th" value="room 7"/>
+           </map>
+        </property>
+    </bean>
+
+    <bean id="tech2" class="com.subham.collection.Teacher">
+        <property name="name" value="Abhijeet"/>
+        <property name="address">
+            <list>
+                <value>odisha</value>
+            </list>
+        </property>
+        <property name="phone">
+            <set>
+                <value>5874961524</value>
+                <value>3695687485</value>
+            </set>
+        </property>
+        <property name="classes">
+            <map>
+                <entry key="+3" value="room 16"/>
+                <entry key="+3" value="room 27"/>
+            </map>
+        </property>
+    </bean>
+</beans>
