@@ -14,5 +14,7 @@ public class Main {
         System.out.println(staff3);
         Staff staff4 = context.getBean("staff4", Staff.class);
         System.out.println(staff4);
+        Staff staff5 = context.getBean("staff5", Staff.class);
+        System.out.println(staff5);
     }
 }
