@@ -21,19 +21,47 @@
         <constructor-arg name="name" value="Abhijeet"/>
         <constructor-arg value="true"/>
     </bean>
-<!--    use case where we bound to use value-->
-<!--    in same constructor if same no and type of argument, and we assign them in different order(parameter)-->
+    <!--    use case where we bound to use value-->
+    <!--    in same constructor if same no and type of argument, and we assign them in different order(parameter)-->
     <bean id="staff4" class="com.subham.con_injection.Staff">
         <constructor-arg value="true" type="boolean"/>
         <constructor-arg name="position" value="Math Teacher" type="String"/>
         <constructor-arg value="4" type="int"/>
         <constructor-arg value="Himanshu" type="String"/>
     </bean>
-<!--    use index-->
+    <!--    use index-->
     <bean id="staff5" class="com.subham.con_injection.Staff">
         <constructor-arg value="false" index="3"/>
         <constructor-arg value="Rahul" index="2"/>
         <constructor-arg value="Physical Teacher" index="1"/>
-        <constructor-arg value="5" index="0" />
+        <constructor-arg value="5" index="0"/>
+    </bean>
+
+
+    <!--    list and reference type injection by constructor-->
+    <!--    value is for simple types (like String, int, boolean).-->
+    <!--    For collections (list/map) or bean references, you must not use value-->
+    <bean id="staff6" class="com.subham.con_injection.Staff">
+        <constructor-arg value="6"/>
+        <constructor-arg value="Java Teacher"/>
+        <constructor-arg value="subham"/>
+        <constructor-arg value="true"/>
+        <constructor-arg>
+            <list>
+                <value>English</value>
+                <value>History</value>
+                <value>Drawing</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg ref="p1"/>
+    </bean>
+    <bean id="p1" class="com.subham.con_injection.Project">
+        <constructor-arg>
+            <map>
+                <entry key="1" value="Short Story Collection"/>
+                <entry key="2" value="Timeline of Indian Freedom Struggle"/>
+                <entry key="3" value="Portrait Sketch Series"/>
+            </map>
+        </constructor-arg>
     </bean>
 </beans>
