@@ -29,4 +29,11 @@
         <constructor-arg value="4" type="int"/>
         <constructor-arg value="Himanshu" type="String"/>
     </bean>
+<!--    use index-->
+    <bean id="staff5" class="com.subham.con_injection.Staff">
+        <constructor-arg value="false" index="3"/>
+        <constructor-arg value="Rahul" index="2"/>
+        <constructor-arg value="Physical Teacher" index="1"/>
+        <constructor-arg value="5" index="0" />
+    </bean>
 </beans>
