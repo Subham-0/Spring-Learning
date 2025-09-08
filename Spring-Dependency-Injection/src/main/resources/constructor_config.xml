@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="staff1" class="com.subham.con_injection.Staff">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Java Teacher"/>
+        <constructor-arg value="subham"/>
+        <constructor-arg value="true"/>
+    </bean>
+    <bean id="staff2" class="com.subham.con_injection.Staff">
+        <constructor-arg name="name" value="harish"/>
+        <constructor-arg name="position" value="Python Teacher"/>
+        <constructor-arg value="false"/>
+    </bean>
+    <!--    use case where we bound to use name-->
+    <bean id="staff3" class="com.subham.con_injection.Staff">
+        <constructor-arg value="3"/>
+        <constructor-arg name="name" value="Abhijeet"/>
+        <constructor-arg value="true"/>
+    </bean>
+<!--    use case where we bound to use value-->
+<!--    in same constructor if same no and type of argument, and we assign them in different order(parameter)-->
+    <bean id="staff4" class="com.subham.con_injection.Staff">
+        <constructor-arg value="true" type="boolean"/>
+        <constructor-arg name="position" value="Math Teacher" type="String"/>
+        <constructor-arg value="4" type="int"/>
+        <constructor-arg value="Himanshu" type="String"/>
+    </bean>
+</beans>
