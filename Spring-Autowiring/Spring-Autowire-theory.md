@@ -38,8 +38,19 @@ Autowiring in Spring **automatically injects object dependencies** into a bean w
 
 ## ✨ Example: Annotation-based Autowiring
 ```java
-@Component
-public class Employee {
+public class Student {
     @Autowired
     private Address address;  // Automatically injected
 }
+```
+
+## 🔑 Important Points about Annotation-based Autowiring
+
+- If **multiple beans of the same type** exist → use `@Qualifier("beanName")` along with `@Autowired` to avoid ambiguity.
+- `@Qualifier` **cannot be placed directly on the constructor**, but you can use it on the **constructor parameter**:
+
+  ```java
+  @Autowired
+  public Student(@Qualifier("homeAddress") Address address) {
+      this.address = address;
+  }
