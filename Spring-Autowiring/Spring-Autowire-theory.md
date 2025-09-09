@@ -107,3 +107,10 @@ public class Student {
           car.drive();
        }
     }        
+
+### 🌱 Spring Bean Scopes
+
+- **prototype** → Scopes the bean definition to **multiple instances** (a new object every time it is requested).
+- **request** → Scopes the bean definition to an **HTTP request**. A new bean instance is created for each request. *(Valid only in web-aware Spring ApplicationContext)*
+- **session** → Scopes the bean definition to an **HTTP session**. A new bean instance is created for each session. *(Valid only in web-aware Spring ApplicationContext)*
+- **global-session** → Scopes the bean definition to a **global HTTP session** (used in portlet-based web apps). *(Valid only in web-aware Spring ApplicationContext)*  
