@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Component("st")
-//@Scope("prototype")
+@Component("st")
+@Scope("prototype")
 public class Student {
-//    @Value("101")
+    @Value("101")
     private int id;
-//    @Value("subham")
+    @Value("subham")
     private String name;
-//    @Value("#{ad}")
+    @Value("#{ad}")
     private List<String> address;
 
     public int getId() {
