@@ -1,17 +1,18 @@
 package com.subham.autowire.stereotype;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("st")
+
 public class Student {
-    @Value("101")
+
     private int id;
-    @Value("subham")
+
     private String name;
-    @Value("#{ad}")
+
     private List<String> address;
 
     public int getId() {

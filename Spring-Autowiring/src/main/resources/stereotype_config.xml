@@ -11,6 +11,8 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.subham.autowire.stereotype"/>
+
+    <bean class="com.subham.autowire.stereotype.Student" scope="prototype" name="st" />
 <util:list list-class="java.util.ArrayList" id="ad">
     <value>Bhubaneswar</value>
     <value>Bangalore</value>
