@@ -93,3 +93,17 @@ public class Student {
         private int id;
         @Value("subham")
         private String name;
+### 🔹@Primary with @Qualifier
+- **@Primary** → for the bean you’ll use **most of the time** (default bean).
+- **@Qualifier** → for **special cases** where you need a different bean.  
+     ```java
+    @Component("person1")
+    public class Person {
+       private final Car car;
+       public Person(@Qualifier("toyota") Car car) {
+          this.car = car;
+       }
+       public void startJourney() {
+          car.drive();
+       }
+    }        
