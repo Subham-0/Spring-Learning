@@ -5,6 +5,11 @@ public class Student {
     private String name;
     private Address address;
 
+    public Student(Address address) {
+        System.out.println("autowiring by constructor injection");
+        this.address = address;
+    }
+
     public int getId() {
         return id;
     }
@@ -26,6 +31,7 @@ public class Student {
     }
 
     public void setAddress(Address address) {
+        System.out.println("by setter injection");
         this.address = address;
     }
 
