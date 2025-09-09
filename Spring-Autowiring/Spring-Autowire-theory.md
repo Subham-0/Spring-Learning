@@ -76,3 +76,20 @@ public class Student {
         @Autowired
         @Qualifier("officeAddress")
         private Address address;
+
+# 🌱 Spring Stereotype Annotations
+
+### 🔹 @Component
+- Marks a class as a **Spring bean** (managed by the Spring container).
+- No need to declare the bean in XML manually.
+- Detected automatically when **component scanning** is enabled.
+### 🔹 @Value
+- Used for injecting values into fields, constructor arguments, or method parameters.
+- Supports literals, property placeholders, and SpEL (Spring Expression Language).
+    ```java
+    @Component("st")
+    public class Student {
+        @Value("101")
+        private int id;
+        @Value("subham")
+        private String name;
