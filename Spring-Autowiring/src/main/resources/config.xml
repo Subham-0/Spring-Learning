@@ -8,11 +8,21 @@
         <property name="city" value="Bangalore"/>
         <property name="state" value="Karnataka"/>
     </bean>
-<!--    <bean name="st1" class="com.subham.autowire.xml.Student" autowire="byName">-->
-<!--        <property name="id" value="101"/>-->
-<!--        <property name="name" value="Subham"/>-->
-<!--    </bean> -->
-    <bean name="st1" class="com.subham.autowire.xml.Student" autowire="byType">
+
+    <!-- Autowiring  byName-->
+    <!--    <bean name="st1" class="com.subham.autowire.xml.Student" autowire="byName">-->
+    <!--        <property name="id" value="101"/>-->
+    <!--        <property name="name" value="Subham"/>-->
+    <!--    </bean> -->
+
+    <!-- Autowiring  byType-->
+    <!--   <bean name="st1" class="com.subham.autowire.xml.Student" autowire="byType">-->
+    <!--        <property name="id" value="101"/>-->
+    <!--        <property name="name" value="Subham"/>-->
+    <!--    </bean>-->
+
+    <!-- Autowiring  constructor-->
+    <bean name="st1" class="com.subham.autowire.xml.Student" autowire="constructor">
         <property name="id" value="101"/>
         <property name="name" value="Subham"/>
     </bean>
