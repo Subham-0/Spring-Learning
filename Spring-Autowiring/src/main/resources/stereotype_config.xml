@@ -12,7 +12,11 @@
 
     <context:component-scan base-package="com.subham.autowire.stereotype"/>
 
-    <bean class="com.subham.autowire.stereotype.Student" scope="prototype" name="st" />
+    <bean class="com.subham.autowire.stereotype.Student" scope="prototype" name="st">
+        <property name="id" value="102"/>
+        <property name="name" value="Rahul"/>
+        <property name="address" value="ad"/>
+    </bean>
 <util:list list-class="java.util.ArrayList" id="ad">
     <value>Bhubaneswar</value>
     <value>Bangalore</value>
