@@ -3,12 +3,16 @@ package com.subham.autowire.stereotype;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("st")
 public class Student {
     @Value("101")
     private int id;
     @Value("subham")
     private String name;
+    @Value("#{ad}")
+    private List<String> address;
 
     public int getId() {
         return id;
@@ -26,11 +30,20 @@ public class Student {
         this.name = name;
     }
 
+    public List<String> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<String> address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", address=" + address +
                 '}';
     }
 }
