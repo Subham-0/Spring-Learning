@@ -4,10 +4,14 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="ad" class="com.subham.autowire.xml.Address">
+    <bean name="address" class="com.subham.autowire.xml.Address">
         <property name="city" value="Bangalore"/>
         <property name="state" value="Karnataka"/>
     </bean>
+<!--    <bean name="homeAddress" class="com.subham.autowire.xml.Address">-->
+<!--        <property name="city" value="Baleswar"/>-->
+<!--        <property name="state" value="Odisha"/>-->
+<!--    </bean>-->
 
     <!-- Autowiring  byName-->
     <!--    <bean name="st1" class="com.subham.autowire.xml.Student" autowire="byName">-->
@@ -21,7 +25,11 @@
     <!--        <property name="name" value="Subham"/>-->
     <!--    </bean>-->
 
-    <!-- Autowiring  constructor-->
+    <!-- Autowiring (constructor mode) -->
+    <!-- In constructor autowiring, if multiple beans of the same type exist:
+         1. Spring first searches for a bean whose id matches the constructor parameter name.
+         2. If no such bean is found, then it looks for a single bean of that type.
+         3. If still ambiguous (multiple beans, no matching name), Spring throws an exception. -->
     <bean name="st1" class="com.subham.autowire.xml.Student" autowire="constructor">
         <property name="id" value="101"/>
         <property name="name" value="Subham"/>

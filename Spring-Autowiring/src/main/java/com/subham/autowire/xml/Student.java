@@ -5,9 +5,9 @@ public class Student {
     private String name;
     private Address address;
 
-    public Student(Address address) {
+    public Student(Address homeAddress) {
         System.out.println("autowiring by constructor injection");
-        this.address = address;
+        this.address = homeAddress;
     }
 
     public int getId() {
