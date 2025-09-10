@@ -114,3 +114,19 @@ public class Student {
 - **request** → Scopes the bean definition to an **HTTP request**. A new bean instance is created for each request. *(Valid only in web-aware Spring ApplicationContext)*
 - **session** → Scopes the bean definition to an **HTTP session**. A new bean instance is created for each session. *(Valid only in web-aware Spring ApplicationContext)*
 - **global-session** → Scopes the bean definition to a **global HTTP session** (used in portlet-based web apps). *(Valid only in web-aware Spring ApplicationContext)*  
+
+- ### Spring Expression Language
+- The Spring Expression language is powerful expression language that supports querying and manipulating an object graph at runtime.we can use it with XML or annotation-based spring configuration.
+- There are several operator available in the language
+- Type of operators
+  -  **Arithmetic** +,-,*,/,%,^,div,mod
+  -  **Relational** <,>,==,!=,<=,>=,lt,gt,eq,ne,le,ge
+  -  **Logical** &&,||,!,and,or,not 
+  -  **Conditional** ?:
+- The **SpEL** provide many interfaces and classes. They are as follows:
+  - Expression Interface
+  - SpelExpression class
+  - ExpressionParser Interface
+  - SpelExpressionParser class
+  - EvaluationContext Interface
+  - StandardEvaluationContext class
