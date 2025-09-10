@@ -14,6 +14,11 @@ public class Config {
         return new Emp(address1(),"subham");
     }
 
+    @Bean(name = {"emp2"})
+    public Emp getEmp2(){
+        return new Emp(address3(),"Abhinav");
+    }
+
     @Bean
     public Address address1(){
         return new Address("first bean");
@@ -23,5 +28,9 @@ public class Config {
     @Primary
     public Address address2(){
         return new Address("second bean");
+    }
+    @Bean
+    public Address address3(){
+        return new Address("third bean");
     }
 }

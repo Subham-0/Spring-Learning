@@ -9,5 +9,7 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         Emp emp = context.getBean("getEmp", Emp.class);
         System.out.println(emp);
+        Emp emp2 = context.getBean("emp2", Emp.class);
+        System.out.println(emp2);
     }
 }
