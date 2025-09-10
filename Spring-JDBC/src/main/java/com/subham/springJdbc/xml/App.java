@@ -1,4 +1,4 @@
-package com.subham;
+package com.subham.springJdbc.xml;
 
 
 import org.springframework.context.ApplicationContext;
@@ -7,10 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ) throws SQLException {
