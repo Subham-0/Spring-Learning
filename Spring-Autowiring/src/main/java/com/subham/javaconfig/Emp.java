@@ -8,11 +8,16 @@ import javax.swing.*;
 
 //@Component
 public class Emp {
-    @Value("Subham")
+
     private String name;
 
-    @Autowired
+
     private Address address;
+
+    public Emp(Address address, String name) {
+        this.address = address;
+        this.name = name;
+    }
 
     public String getName() {
         return name;

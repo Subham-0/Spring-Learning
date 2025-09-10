@@ -11,7 +11,7 @@ public class Config {
 
     @Bean()
     public Emp getEmp(){
-        return new Emp();
+        return new Emp(address1(),"subham");
     }
 
     @Bean
