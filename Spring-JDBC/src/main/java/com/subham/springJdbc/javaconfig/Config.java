@@ -3,6 +3,7 @@ package com.subham.springJdbc.javaconfig;
 import com.subham.dao.StudentDao;
 import com.subham.dao.StudentDaoImp;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
+@ComponentScan(basePackages = "com.subham.dao")
 public class Config {
 
     @Bean
@@ -29,10 +31,10 @@ public class Config {
         return jd;
     }
 
-    @Bean("stdao")
-    public StudentDao studentDao(){
-        StudentDaoImp studentDaoImp = new StudentDaoImp();
-        studentDaoImp.setTemplate(getJdbctemplate());
-        return studentDaoImp;
-    }
+//    @Bean("stdao")
+//    public StudentDao studentDao(){
+//        StudentDaoImp studentDaoImp = new StudentDaoImp();
+//        studentDaoImp.setTemplate(getJdbctemplate());
+//        return studentDaoImp;
+//    }
 }

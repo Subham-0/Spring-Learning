@@ -1,24 +1,28 @@
 package com.subham.dao;
 
 import com.subham.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Component("stdao")
 public class StudentDaoImp implements StudentDao {
 
+    @Autowired
     private JdbcTemplate template;
 
-    public JdbcTemplate getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(JdbcTemplate template) {
-        this.template = template;
-    }
+//    public JdbcTemplate getTemplate() {
+//        return template;
+//    }
+//
+//    public void setTemplate(JdbcTemplate template) {
+//        this.template = template;
+//    }
 
     @Override
     public int insert(Student student) {

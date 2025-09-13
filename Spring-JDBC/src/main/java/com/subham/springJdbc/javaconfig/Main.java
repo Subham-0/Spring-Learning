@@ -52,16 +52,16 @@ public class Main {
         StudentDao dao = context.getBean("stdao", StudentDaoImp.class);
 
 //        Student s = new Student();
-//        s.setId(5);
-//        s.setName("Hari");
-//        s.setAddress("Kutarang");
+//        s.setId(7);
+//        s.setName("LuLu");
+//        s.setAddress("Raipur");
 //        int i = dao.insert(s);
 //        System.out.println(i+" row inserted");
 
 //        Student s = new Student();
-//        s.setId(5);
-//        s.setName("Haria");
-//        s.setAddress("KutarangGain");
+//        s.setId(7);
+//        s.setName("Hari prasad");
+//        s.setAddress("Nayagada");
 //        int i = dao.updateDetails(s);
 //        System.out.println(i + " row updated");
 
