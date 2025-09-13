@@ -13,5 +13,8 @@
     <bean name="jdbcTemp" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="ds"/>
     </bean>
+    <bean name="dao" class="com.subham.dao.StudentDaoImp">
+        <property name="template" ref="jdbcTemp"/>
+    </bean>
 
 </beans>
