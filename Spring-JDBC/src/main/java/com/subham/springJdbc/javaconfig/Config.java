@@ -1,5 +1,7 @@
 package com.subham.springJdbc.javaconfig;
 
+import com.subham.dao.StudentDao;
+import com.subham.dao.StudentDaoImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,5 +27,12 @@ public class Config {
         JdbcTemplate jd = new JdbcTemplate();
         jd.setDataSource(getDataSource());
         return jd;
+    }
+
+    @Bean("stdao")
+    public StudentDao studentDao(){
+        StudentDaoImp studentDaoImp = new StudentDaoImp();
+        studentDaoImp.setTemplate(getJdbctemplate());
+        return studentDaoImp;
     }
 }

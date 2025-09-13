@@ -1,5 +1,8 @@
 package com.subham.springJdbc.javaconfig;
 
+import com.subham.dao.StudentDao;
+import com.subham.dao.StudentDaoImp;
+import com.subham.model.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,8 +15,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SQLException {
         ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        JdbcTemplate jdbc = context.getBean("jdbcTemp", JdbcTemplate.class);
-        System.out.println(jdbc.getDataSource().getConnection());
+//        JdbcTemplate jdbc = context.getBean("jdbcTemp", JdbcTemplate.class);
+//        System.out.println(jdbc.getDataSource().getConnection());
+
 
         //insert
 //        String insertQuery = "insert into student(id,name,address) values(?,?,?)";
@@ -37,13 +41,37 @@ public class Main {
 //        System.out.println(name);
 
         //fetchingAll
-        String fetch = "select * from student";
-        RowMapper rowMapper = (rs, rowNum) -> rs.getString(2);
-        List<String> list = jdbc.query(fetch,rowMapper);
-        for (String res : list){
-            System.out.println(res);
-        }
+//        String fetch = "select * from student";
+//        RowMapper rowMapper = (rs, rowNum) -> rs.getString(2);
+//        List<String> list = jdbc.query(fetch,rowMapper);
+//        for (String res : list){
+//            System.out.println(res);
+//        }
 
+//by dao layer
+        StudentDao dao = context.getBean("stdao", StudentDaoImp.class);
 
+//        Student s = new Student();
+//        s.setId(5);
+//        s.setName("Hari");
+//        s.setAddress("Kutarang");
+//        int i = dao.insert(s);
+//        System.out.println(i+" row inserted");
+
+//        Student s = new Student();
+//        s.setId(5);
+//        s.setName("Haria");
+//        s.setAddress("KutarangGain");
+//        int i = dao.updateDetails(s);
+//        System.out.println(i + " row updated");
+
+//        int i = dao.delete(5);
+//        System.out.println(i + " row deleted");
+
+//        Student s = dao.getStudentById(101);
+//        System.out.println(s);
+
+//        List<Student> stlist = dao.getAllStudent();
+//        stlist.forEach(System.out::println);
     }
 }
