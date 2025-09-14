@@ -1,11 +1,11 @@
 package com.subham.java_config;
 
 import com.subham.java_config.model.Student;
+import com.subham.java_config.service.StudentDao;
 import com.subham.java_config.service.StudentService;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -62,8 +62,9 @@ public class OrmConfig {
         return new HibernateTransactionManager(sessionFactory);
     }
 
-    @Bean
-    public StudentService studentService(HibernateTemplate template) {
+    @Bean("studDao")
+    public StudentDao studentService(HibernateTemplate template) {
         return new StudentService(template);
     }
+
 }
