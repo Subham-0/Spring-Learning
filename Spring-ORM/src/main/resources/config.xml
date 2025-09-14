@@ -22,12 +22,18 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.subham.xml.Student</value>
+                <value>com.subham.xml.model.Student</value>
             </list>
         </property>
     </bean>
     <bean id="template" class="org.springframework.orm.hibernate5.HibernateTemplate">
         <constructor-arg ref="factory"/>
+    </bean>
+    <bean id="studDao" class="com.subham.xml.dao.StudentDaoImp">
+        <property name="template" ref="template"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="factory"/>
     </bean>
 
 

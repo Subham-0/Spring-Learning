@@ -1,4 +1,4 @@
-package com.subham.xml;
+package com.subham.xml.model;
 
 
 import javax.persistence.Entity;
