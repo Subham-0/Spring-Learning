@@ -6,6 +6,12 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: group-1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.subham.kafka_consumer_example.dto"
+        spring.json.value.default.type: com.subham.kafka_consumer_example.dto.Customer
+        spring.json.use.type.headers: false  # use this if packages differ between producer/consumer
 
 server:
   port: 9292
