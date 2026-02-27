@@ -1,19 +1,37 @@
 # Kafka Producer - Spring Boot
 
-A Spring Boot application that acts as a Kafka **message producer**. It exposes a REST endpoint that publishes messages to a Kafka topic.
+A Spring Boot application that acts as a Kafka **message producer**. It exposes REST endpoints to publish both plain string messages and serialized Java objects (Customer) to a Kafka topic.
 
 ## How It Works
 
-- A GET request hits the `/producer-app/publish/{message}` endpoint
-- The controller calls `KafkaMessagePublisher` which uses `KafkaTemplate` to send the message to `topic-1`
-- Each send is handled asynchronously using `CompletableFuture`, logging success or failure to the console
+- A GET request to `/producer-app/publish/{message}` publishes plain string messages to `topic-1`
+- A POST request to `/producer-app/publish` accepts a `Customer` JSON body and publishes it as a serialized object
+- `KafkaMessagePublisher` uses `KafkaTemplate` to send messages asynchronously via `CompletableFuture`
+- Messages are serialized using `JacksonJsonSerializer` on the producer side
+- `KafkaProducerConfig` programmatically creates `topic-1` with 5 partitions on startup
 
 ## Tech Stack
 
-- Java 17+
+- Java 21+
 - Spring Boot
 - Spring Kafka (`KafkaTemplate`)
+- Jackson (`JacksonJsonSerializer`)
+- Lombok
 - Apache Kafka + Zookeeper
+
+## Project Structure
+
+```
+src/
+├── controller/
+│   └── EventController.java       # REST endpoints
+├── service/
+│   └── KafkaMessagePublisher.java # Kafka send logic
+├── dto/
+│   └── Customer.java              # DTO for object publishing
+└── config/
+    └── KafkaProducerConfig.java   # Topic creation config
+```
 
 ## Prerequisites
 
@@ -37,15 +55,29 @@ mvn spring-boot:run
 
 App runs on **port 9191**.
 
-## Publishing a Message
+## API Endpoints
 
-Use Postman or your browser to hit:
+### Publish String Messages
 
 ```
-GET http://localhost:9191/producer-app/publish/user
+GET http://localhost:9191/producer-app/publish/{message}
 ```
 
-This will publish 9,999 messages (`user 1`, `user 2` ... `user 9999`) to `topic-1`.
+Publishes 9,999 messages (`message 1` ... `message 9999`) to `topic-1`.
+
+### Publish a Customer Object
+
+```
+POST http://localhost:9191/producer-app/publish
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Subham",
+  "email": "subham@example.com",
+  "contactNo": "9876543210"
+}
+```
 
 ## Configuration
 
@@ -54,11 +86,15 @@ spring:
   kafka:
     producer:
       bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
 
 server:
   port: 9191
 ```
 
+> **Note:** `spring.json.add.type.headers` is disabled. The consumer uses a fixed default type instead of relying on headers, which allows the producer and consumer to have different package structures.
+
 ## Related Project
 
-Pair this with the [kafka-consumer-example](../kafka-consumer-example/README.md) to see messages being consumed in real time.
+Pair this with the [kafka-consumer-example](../kafka-consumer-example/README.md) to see Customer objects being deserialized and logged in real time.

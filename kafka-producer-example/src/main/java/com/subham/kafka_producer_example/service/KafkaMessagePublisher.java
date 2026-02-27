@@ -1,5 +1,6 @@
 package com.subham.kafka_producer_example.service;
 
+import com.subham.kafka_producer_example.dto.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -26,6 +27,15 @@ public class KafkaMessagePublisher {
 
     }
 
-
+    public void sendObjectToTopic(Customer customer){
+        CompletableFuture<SendResult<String, Object>> future = template.send("topic-1",customer);
+        future.whenComplete((result,exp)->{
+            if(exp ==null){
+                System.out.println("Sent Customer = ["+customer.toString()+"] with offSet =["+result.getRecordMetadata().offset()+"]");
+            }else {
+                System.out.println("Unable to send customer =[" + customer.toString() + "] due to " + exp.getMessage());
+            }
+        });
+    }
 
 }
