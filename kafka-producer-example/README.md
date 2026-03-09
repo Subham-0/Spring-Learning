@@ -1,20 +1,20 @@
 # Kafka Producer - Spring Boot
 
-A Spring Boot application that acts as a Kafka **message producer**. It exposes REST endpoints to publish both plain string messages and serialized Java objects (Customer) to a Kafka topic.
+A Spring Boot application that acts as a Kafka **message producer**. It publishes plain string messages and serialized `Customer` objects to separate Kafka topics. Kafka configuration is handled entirely through a Java `@Configuration` class instead of `application.yml`.
 
 ## How It Works
 
-- A GET request to `/producer-app/publish/{message}` publishes plain string messages to `topic-1`
-- A POST request to `/producer-app/publish` accepts a `Customer` JSON body and publishes it as a serialized object
-- `KafkaMessagePublisher` uses `KafkaTemplate` to send messages asynchronously via `CompletableFuture`
-- Messages are serialized using `JacksonJsonSerializer` on the producer side
-- `KafkaProducerConfig` programmatically creates `topic-1` with 5 partitions on startup
+- A GET request to `/producer-app/publish/{message}` sends string messages to `string-topic`
+- A POST request to `/producer-app/publish` accepts a `Customer` JSON body and sends it to `customer-topic`
+- `KafkaProducerConfig` manually wires up `ProducerFactory` and `KafkaTemplate` as Spring beans
+- `JacksonJsonSerializer` handles serialization of both strings and objects
+- Topics are created programmatically with specific partition counts in the config class
 
 ## Tech Stack
 
 - Java 21+
 - Spring Boot
-- Spring Kafka (`KafkaTemplate`)
+- Spring Kafka (`KafkaTemplate`, `ProducerFactory`)
 - Jackson (`JacksonJsonSerializer`)
 - Lombok
 - Apache Kafka + Zookeeper
@@ -24,13 +24,13 @@ A Spring Boot application that acts as a Kafka **message producer**. It exposes 
 ```
 src/
 ├── controller/
-│   └── EventController.java       # REST endpoints
+│   └── EventController.java        # REST endpoints
 ├── service/
-│   └── KafkaMessagePublisher.java # Kafka send logic
+│   └── KafkaMessagePublisher.java  # Kafka send logic
 ├── dto/
-│   └── Customer.java              # DTO for object publishing
+│   └── Customer.java               # DTO for object publishing
 └── config/
-    └── KafkaProducerConfig.java   # Topic creation config
+    └── KafkaProducerConfig.java    # ProducerFactory, KafkaTemplate, topic beans
 ```
 
 ## Prerequisites
@@ -63,7 +63,7 @@ App runs on **port 9191**.
 GET http://localhost:9191/producer-app/publish/{message}
 ```
 
-Publishes 9,999 messages (`message 1` ... `message 9999`) to `topic-1`.
+Publishes 9 messages (`message 1` ... `message 9`) to `string-topic`.
 
 ### Publish a Customer Object
 
@@ -79,22 +79,38 @@ Content-Type: application/json
 }
 ```
 
-## Configuration
+Publishes the Customer as a serialized JSON object to `customer-topic`.
+
+## Kafka Configuration (Java-based)
+
+Instead of `application.yml`, Kafka is configured via `KafkaProducerConfig.java`:
+
+```java
+props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
+```
+
+### Topics Created
+
+| Topic | Partitions | Purpose |
+|-------|-----------|---------|
+| `string-topic` | 2 | Plain string messages |
+| `customer-topic` | 3 | Serialized Customer objects |
+
+## application.yml
+
+Kafka config is intentionally absent from `application.yml` — everything is in the config class.
 
 ```yaml
 spring:
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+  application:
+    name: kafka-producer-example
 
 server:
   port: 9191
 ```
 
-> **Note:** `spring.json.add.type.headers` is disabled. The consumer uses a fixed default type instead of relying on headers, which allows the producer and consumer to have different package structures.
-
 ## Related Project
 
-Pair this with the [kafka-consumer-example](../kafka-consumer-example/README.md) to see Customer objects being deserialized and logged in real time.
+Pair this with the [kafka-consumer-example](../kafka-consumer-example/README.md) to see messages being deserialized and logged in real time.

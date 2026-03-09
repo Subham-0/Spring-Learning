@@ -15,7 +15,7 @@ public class KafkaMessagePublisher {
     private KafkaTemplate<String,Object> template;
 
     public void sendMessageToTopic(String message){
-        CompletableFuture<SendResult<String, Object>> future = template.send("topic-1",message);
+        CompletableFuture<SendResult<String, Object>> future = template.send("string-topic",message);
         future.whenComplete((result,exp)->{
             if(exp ==null){
                 System.out.println("Sent Message = ["+message+"] with offSet =["+result.getRecordMetadata().offset()+"]");
@@ -28,7 +28,7 @@ public class KafkaMessagePublisher {
     }
 
     public void sendObjectToTopic(Customer customer){
-        CompletableFuture<SendResult<String, Object>> future = template.send("topic-1",customer);
+        CompletableFuture<SendResult<String, Object>> future = template.send("customer-topic",customer);
         future.whenComplete((result,exp)->{
             if(exp ==null){
                 System.out.println("Sent Customer = ["+customer.toString()+"] with offSet =["+result.getRecordMetadata().offset()+"]");
