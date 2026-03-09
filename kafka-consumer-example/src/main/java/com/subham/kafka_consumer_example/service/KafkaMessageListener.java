@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 public class KafkaMessageListener {
     Logger log = LoggerFactory.getLogger(KafkaMessageListener.class);
 
-//    @KafkaListener(topics = "topic-1",groupId = "group-1")
-//    public void consumer(String message){
-//        log.info("consumer consume the message {}",message);
-//    }
+    @KafkaListener(topics = "string-topic",groupId = "group-1",containerFactory = "stringKafkaListenerContainerFactory")
+    public void consumeString(String message){
+        log.info("consumer consume the message {}",message);
+    }
 
-    @KafkaListener(topics = "topic-1",groupId = "group-1")
-    public void consumer(Customer customer){
+    @KafkaListener(topics = "customer-topic",groupId = "group-1",containerFactory = "customerKafkaListenerContainerFactory")
+    public void consumeCustomer(Customer customer){
         log.info("Consumer consume the Customer {}",customer.toString());
     }
 }
